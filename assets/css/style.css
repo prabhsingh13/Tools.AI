@@ -1,0 +1,358 @@
+/* Imported Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
+
+/* Global CSS */
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: 'Mulish', sans-serif;
+    color: #fff;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+/* Loader CSS */
+
+.alloader {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999999;
+    background-color: var(--primary-background);
+}
+
+.loader {
+    width: 148px;
+    height: 148px;
+    display: inline-block;
+    position: relative;
+}
+
+.loader::after,
+.loader::before {
+    content: '';
+    box-sizing: border-box;
+    width: 148px;
+    height: 148px;
+    border-radius: 50%;
+    background: #FFF;
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: animloader 2s linear infinite;
+}
+
+.loader::after {
+    animation-delay: 1s;
+}
+
+@keyframes animloader {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+/* General */
+:root {
+    --primary-background: #1E1633;
+    --primary-gradient: var(linear-gradient(251deg, #1498EB 0%, #962DE3 89.72%));
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    font-size: 14px;
+    color: #9394a8;
+    font-style: normal;
+    font-weight: 400;
+}
+
+span {
+    display: flex;
+    display: inline-block;
+}
+
+.background {
+    position: relative;
+    background-image: url(../images/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    background-attachment: fixed;
+    background-color: var(--primary-background);
+}
+
+.main {
+    position: absolute;
+    background-image: url(../images/back-greadiant.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    top: 0;
+    height: 200vh;
+    background-attachment: fixed;
+}
+
+.gradient_line {
+    width: 40px;
+    height: 4px;
+    flex-shrink: 0;
+    border-radius: 100px;
+    margin-bottom: 15px;
+    background: var(--linear, linear-gradient(251deg, #1498EB 0%, #962DE3 89.72%));
+}
+
+
+.btn-toggle {
+    background: var(--linear, linear-gradient(251deg, #1498EB 0%, #962DE3 89.72%));
+}
+
+.btn-gradient {
+    background: var(--linear, linear-gradient(251deg, #1498EB 0%, #962DE3 89.72%));
+}
+
+.custom-btn {
+    height: 50px;
+    max-width: 238px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.48px;
+    color: #ffffff;
+    background: var(--linear, linear-gradient(251deg, #1498EB 0%, #962DE3 89.72%));
+    vertical-align: middle;
+    padding: 15px 30px;
+    font-family: 'Mulish', sans-serif;
+}
+
+.btn:hover {
+    color: var(--primary-background);
+}
+
+@media only screen and (max-width: 575px) {
+    .btn {
+        height: 32px;
+        max-width: 180px;
+        font-size: 12px;
+        font-weight: 400;
+        padding: 8px 10px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .btn {
+        height: 40px;
+        font-size: 14px;
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width: 420px) {
+    .main_btn {
+        display: none;
+    }
+}
+
+.btn-login-primary a {
+    position: relative;
+    text-decoration: none;
+    padding: 0 15px;
+}
+
+.btn-header-login .arrow {
+    position: absolute;
+    margin: 0 5px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.btn-header-login a:hover .arrow {
+    transform: translateX(5px);
+    /* Adjust the distance the arrow moves */
+}
+
+.btn-header-login a:hover .login-text {
+    transform: translateX(-5px);
+    /* Counteract the arrow movement */
+}
+
+.verified{
+    background: rgb(0, 104, 24);
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.error{
+    background: red;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+/* Navbar */
+.navbar {
+    backdrop-filter: blur(10px);
+    /* Adjust the blur value as needed */
+    transition: background-color 0.3s, backdrop-filter 0.3s;
+    background-color: #1E1633 !important;
+}
+
+.nav-background {
+    background-color: #1E1633 !important;
+    backdrop-filter: blur(10px);
+    /* Adjust the blur value as needed */
+}
+
+/* Style to make text black */
+/* .white-background .navbar-nav .nav-item a,
+.white-background .tp-header-login a, 
+.white-background .login-text {
+    color: black !important;
+} */
+
+/* Style to make text white */
+.navbar-nav .nav-item a,
+.btn-header-login a {
+    color: #ffffff !important;
+    font-weight: 500;
+}
+
+.logo h3 {
+    color: #fff;
+}
+
+/* Welcome Section */
+
+.sub_title {
+    color: #9394A8;
+    font-family: 'Mulish', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 2.97px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.gradient_line {
+    width: 40px;
+    height: 4px;
+    flex-shrink: 0;
+    border-radius: 100px;
+    margin-bottom: 15px;
+    background: var(--linear, linear-gradient(251deg, #1498EB 0%, #962DE3 89.72%));
+}
+
+.main_title {
+    color: #FFF;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: 1.8px;
+}
+
+.title_text {
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0.42px;
+    max-width: 696px;
+    margin-bottom: 30px;
+    margin: auto;
+}
+
+.Working_work_section div:nth-child(3) {
+    max-width: 486px;
+}
+
+.sign_up_form input {
+    width: 500px;
+    height: 58px;
+    border-radius: 5px;
+    border: 1px solid var(--6-e-6-f-81, #6E6F81);
+    background: var(--bg-color, #1E1633);
+    font-size: 14px;
+    font-family: 'Mulish', sans-serif;
+    padding-left: 55px;
+    color: #FFF;
+}
+
+.sign_up_form input::placeholder {
+    color: #FFF;
+}
+
+.sign_up_form a {
+    left: 323px;
+    right: 0;
+    top: 4px;
+}
+
+.sign_up_form svg {
+    top: 22px;
+    left: 28px;
+}
+
+.help_word_box svg {
+    width: 100px;
+    height: 80px;
+}
+
+.number_gradient h1 {
+    font-weight: 800;
+    color: #1E1633;
+    font-family: 'Mulish', sans-serif;
+    /*text-shadow: -1px 1px 0 #8c0ae9,
+          1px 0px 0 #962DE3,
+         1px -1px 0 #3da4e4,
+         1px -1px 0 #3da4e4,
+        -1px -1px 0 #ac52ec; */
+    background: -webkit-linear-gradient(right, #962DE3, #1498EB, #962DE3, #962DE3);
+    -webkit-background-clip: text;
+    -webkit-text-stroke: 2px transparent;
+    color: #1E1633;
+}
+
+
+/* Menu */
+.menu-content {
+    background-color: #2B2E4A;
+    border-radius: 20px;
+    padding: 95px 75px;
+}
+
+.nav-item .active {
+    background: var(--linear, linear-gradient(251deg, #1498EB 0%, #962DE3 89.72%));
+    margin: 5px;
+    color: #ffffff;
+}
+
+.nav-link {
+    color: #ffffff;
+}
+
+.row select option {
+    color: #000000;
+}
+
