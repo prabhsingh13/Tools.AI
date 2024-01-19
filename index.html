@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="./assets/css/responsive.css">
 </head>
 
-<body class="background">
-    <div class="alloader" style="display: none;">
+<body class="background" onload="onPageLoad()">
+    <div class="alloader" id="loader" style="display:;">
         <span class="loader"></span>
     </div>
     <div class="main">
@@ -135,7 +135,7 @@
                         </div>
                         <div class="row">
                             <!-- Vertical Menu -->
-                            <div class="col-3">
+                            <div class="col-lg-3 col-md-3 col-sm-12">
                                 <ul class="nav flex-column nav-pills">
                                     <li class="nav-item">
                                         <a class="nav-link active" id="audio-tab" data-bs-toggle="pill"
@@ -150,14 +150,13 @@
                                             href="#link-content">LINK</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="qr-tab" data-bs-toggle="pill" 
-                                        href="#qr-content">QR</a>
+                                        <a class="nav-link" id="qr-tab" data-bs-toggle="pill" href="#qr-content">QR</a>
                                     </li>
                                 </ul>
                             </div>
 
                             <!-- Sub-options and Content -->
-                            <div class="col-9">
+                            <div class="col-lg-9 col-md-9 col-sm-12">
                                 <div class="tab-content">
                                     <!-- Audio Content -->
                                     <div class="tab-pane fade show active" id="audio-content">
@@ -212,6 +211,7 @@
                                         <hr>
                                         <!-- Additional content for the converter as needed -->
                                     </div>
+
                                     <!-- Video Content -->
                                     <div class="tab-pane fade" id="video-content">
                                         <div class="row">
@@ -321,55 +321,227 @@
                                                                     <strong>Create WhatsApp chat links</strong>
                                                                 </h2>
                                                                 <h5 class="h5">Type your WhatsApp Number</h5>
-                                                                <p class="paragraph">Enter your WhatsApp number along with your country code (with the ‘+’ symbol). For instance, if your country code is +91 and your WhatsApp number is +91872849182.</p>
-                                                                <input type="text" value="" placeholder="eg. 919000012345" required class="form-control mb-3" id="getNumber" onkeyup="validatePhone()">
-                                                                <p class="" id="phoneError"></p>
-                                                
+                                                                <p class="paragraph">Enter your WhatsApp number along
+                                                                    with your country code (with the ‘+’ symbol). For
+                                                                    instance, if your country code is +91 and your
+                                                                    WhatsApp number is +91872849182.</p>
+                                                                <input type="text" value=""
+                                                                    placeholder="eg. +919000012345" required
+                                                                    class="form-control mb-3" id="getNumber1"
+                                                                    onkeyup="validatePhone('getNumber1', 'phoneError1')">
+                                                                <p class="" id="phoneError1"></p>
+
                                                                 <h5 class="h5">Enter your email ID</h5>
-                                                                <input type="email" value="" name="email" placeholder="xyz@officialemail.com" required class="form-control mb-3" id="getEmail" onkeyup="validateMail()">
-                                                                <p class="" id="mailError"></p>
-                                                
+                                                                <input type="email" value="" name="email"
+                                                                    placeholder="tools.ai@gmail.com" required
+                                                                    class="form-control mb-3" id="getEmail1"
+                                                                    onkeyup="validateMail('getEmail1', 'mailError1')">
+                                                                <p class="" id="mailError1"></p>
+
                                                                 <h5 class="h5">Welcome Message (Optional)</h5>
-                                                                <p class="prgh">Automatically send this text when a user clicks on your chat link, making it easier to start a conversation.</p>
-                                                                <textarea placeholder="eg. Hello, I have a question about your service. Can you please help me?" class="form-control mb-3" id="getMessage"></textarea>
-                                                
-                                                                <button class="btn custom-btn btn-gradient" type="button" id="generate" onclick="generateLink()">Generate Now</button>
+                                                                <p class="prgh">Automatically send this text when a user
+                                                                    clicks on your chat link, making it easier to start
+                                                                    a conversation.</p>
+                                                                <textarea
+                                                                    placeholder="eg. Hello, I have a question about your service. Can you please help me?"
+                                                                    class="form-control mb-3"
+                                                                    id="getMessage1"></textarea>
+
+                                                                <button class="btn custom-btn btn-gradient"
+                                                                    type="button" id="generate"
+                                                                    onclick="validate(generateLink, 'getNumber1', 'phoneError1', 'getEmail1', 'mailError1', 'submitError1')">Generate
+                                                                    Now</button>
+                                                                <p class="" id="submitError1"></p>
+
                                                             </div>
                                                         </form>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                                         <div class="box mb-3">
                                                             <h5 class="h5">Your WhatsApp Click-To-Chat Link</h5>
-                                                            <input type="text" value="" class="form-control mb-3" id="showLink" readonly>
-                                                            <button class="btn btn-outline-primary" type="button" onclick="copyToClipboard()">
+                                                            <input type="text" value="" class="form-control mb-3"
+                                                                id="showLink" readonly>
+                                                            <button class="btn btn-outline-primary" type="button"
+                                                                onclick="copyToClipboard()">
                                                                 <i class="fa-regular fa-copy"></i> Copy to Clipboard
                                                             </button>
-                                                            <a href="" target="_blank" rel="noopener" class="btn btn-outline-success" id="showLinkHref">
+                                                            <a href="" target="_blank" rel="noopener"
+                                                                class="btn btn-outline-success" id="showLinkHref">
                                                                 <i class="fa-brands fa-whatsapp"></i> Open on WhatsApp
                                                             </a>
                                                             <hr class="my-5">
                                                             <div class="d-flex flex-column">
                                                                 <h5 class="h5">Your WhatsApp QR Code</h5>
                                                                 <div class="d-flex justify-content-center m-4">
-                                                                    <img src="./assets/images/QR.png" alt="" style="height: 150px; width: 150px; display: block;" id="qrImage">
+                                                                    <img src="./assets/images/QR.png" alt=""
+                                                                        style="height: 150px; width: 150px; display: block;"
+                                                                        id="qrImage">
                                                                     <div id="qrcode" class="p-2 bg-light d-none"></div>
-                                                                    <button class="btn btn-gradient" type="button" onclick="downloadQRCode()">
-                                                                        <i class="fas fa-download"></i> <strong>Download QR Code</strong>
+                                                                    <button class="btn btn-gradient" type="button"
+                                                                        onclick="downloadQRCode()">
+                                                                        <i class="fas fa-download"></i> <strong>Download
+                                                                            QR Code</strong>
                                                                     </button>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
                                             </div>
                                             <!-- Sub-Category 2 Content -->
                                             <div class="tab-pane fade" id="link-sub-content2">
-                                                <p>This is the content for Sub-Category 2 under LINK.</p>
+                                                <!-- Step 1 Form -->
+                                                <form id="wpForm">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                                            <div class="box mb-3">
+                                                                <h2 class="h3">
+                                                                    <strong>Create WhatsApp Widget</strong>
+                                                                </h2>
+                                                                <h5 class="h5">Type your WhatsApp Number</h5>
+                                                                <p class="paragraph">Enter your WhatsApp number along
+                                                                    with your country code (with the ‘+’ symbol). For
+                                                                    instance, if your country code is +91 and your
+                                                                    WhatsApp number is +91872849182.</p>
+                                                                <input type="text" value=""
+                                                                    placeholder="eg. +919000012345" required
+                                                                    class="form-control mb-3" id="getNumber2"
+                                                                    onkeyup="validatePhone('getNumber2', 'phoneError2')">
+                                                                <p class="" id="phoneError2"></p>
+
+                                                                <h5 class="h5">Enter your email ID</h5>
+                                                                <input type="email" value="" name="email"
+                                                                    placeholder="tools.ai@gmail.com" required
+                                                                    class="form-control mb-3" id="getEmail2"
+                                                                    onkeyup="validateMail('getEmail2', 'mailError2')">
+                                                                <p class="" id="mailError2"></p>
+
+                                                                <h5 class="h5">Welcome Message (Optional)</h5>
+                                                                <p class="prgh">Automatically send this text when a user
+                                                                    clicks on your chat link, making it easier to start
+                                                                    a conversation.</p>
+                                                                <textarea
+                                                                    placeholder="eg. Hello, I have a question about your service. Can you please help me?"
+                                                                    class="form-control mb-3"
+                                                                    id="getMessage2"></textarea>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                                            <div class="row mb-4">
+                                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                                    <div class="form-group">
+                                                                        <label for="bgColor" class="h5">Background
+                                                                            Color:</label>
+                                                                        <input type="color" class="form-control"
+                                                                            id="bgColor" value="#007bff" required>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                                    <div class="form-group">
+                                                                        <label for="logoColor" class="h5">Logo
+                                                                            Color:</label>
+                                                                        <input type="color" class="form-control"
+                                                                            id="logoColor" value="#ffffff" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Position Radio Button Group -->
+                                                            <div class="form-group d-flex flex-column mb-3">
+                                                                <label class="h5">Position:</label>
+                                                                <div class="btn-group" role="group"
+                                                                    aria-label="Position">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="positionRadio" id="leftPosition"
+                                                                        autocomplete="off" checked>
+                                                                    <label class="btn custom-btn"
+                                                                        for="leftPosition">Left</label>
+
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="positionRadio" id="rightPosition"
+                                                                        autocomplete="off">
+                                                                    <label class="btn custom-btn"
+                                                                        for="rightPosition">Right</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Widget Size Radio Button Group -->
+                                                            <div class="form-group d-flex flex-column mb-3">
+                                                                <label class="h5">Widget Size:</label>
+                                                                <div class="btn-group" role="group"
+                                                                    aria-label="Widget Size">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="sizeRadio" id="smallSize"
+                                                                        autocomplete="off" checked>
+                                                                    <label class="btn custom-btn"
+                                                                        for="smallSize">Small</label>
+
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="sizeRadio" id="mediumSize"
+                                                                        autocomplete="off">
+                                                                    <label class="btn custom-btn"
+                                                                        for="mediumSize">Medium</label>
+
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="sizeRadio" id="largeSize"
+                                                                        autocomplete="off">
+                                                                    <label class="btn custom-btn"
+                                                                        for="largeSize">Large</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Background Shadow Radio Button Group -->
+                                                            <div class="form-group d-flex flex-column mb-3">
+                                                                <label class="h5">Background Shadow:</label>
+                                                                <div class="btn-group" role="group"
+                                                                    aria-label="Background Shadow">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="shadowRadio" id="shadowOn"
+                                                                        autocomplete="off">
+                                                                    <label class="btn custom-btn"
+                                                                        for="shadowOn">On</label>
+
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="shadowRadio" id="shadowOff"
+                                                                        autocomplete="off">
+                                                                    <label class="btn custom-btn"
+                                                                        for="shadowOff">Off</label>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn custom-btn btn-gradient" type="button"
+                                                        id="generate"
+                                                        onclick="validate(generateCode, 'getNumber2', 'phoneError2', 'getEmail2', 'mailError2', 'submitError2')">Generate
+                                                        Now</button>
+                                                    <p class="" id="submitError2"></p>
+                                                </form>
+
+                                                <!-- Generated Code (hidden by default) -->
+                                                <div id="generatedCode" class="d-none mt-3">
+                                                    <h4>Generated Code:</h4>
+                                                    <div id="codeBox"></div>
+                                                    <button class="btn custom-btn btn-gradient mt-3"
+                                                        onclick="copyCodeBox()">
+                                                        Copy Code
+                                                    </button>
+                                                    <button class="btn custom-btn btn-gradient mt-3"
+                                                        onclick="generateNew()">
+                                                        Generate New
+                                                    </button>
+                                                    <button class="btn custom-btn btn-gradient mt-3"
+                                                        onclick="editExistingCode()">
+                                                        Edit Existing Code
+                                                    </button>
+                                                </div>
+                                                <!-- Add more sub-category contents as needed -->
                                             </div>
-                                            <!-- Add more sub-category contents as needed -->
                                         </div>
                                     </div>
+
                                     <!-- QR Content -->
                                     <div class="tab-pane fade" id="qr-content">
                                         <ul class="nav flex-column nav-pills">
@@ -377,16 +549,16 @@
                                                 <a class="nav-link active" id="qr-sub-tab1" data-bs-toggle="pill"
                                                     href="#qr-sub-content1">Text-To-QR Converter</a>
                                             </li>
-                                            <!-- <li class="nav-item">
+                                            <li class="nav-item">
                                                 <a class="nav-link" id="qr-sub-tab2" data-bs-toggle="pill"
                                                     href="#qr-sub-content2">Sub-Category 2</a>
-                                            </li> -->
+                                            </li>
                                             <!-- Add more sub-categories as needed -->
                                         </ul>
                                         <hr>
                                         <div class="tab-content mt-2">
                                             <!-- Sub-Category 1 Content -->
-                                            <div class="tab-pane fade show" id="qr-sub-content1">
+                                            <div class="tab-pane fade show active" id="qr-sub-content1">
                                                 <p>This is the content for Sub-Category 1 under QR.</p>
                                             </div>
                                             <!-- Sub-Category 2 Content -->
@@ -405,7 +577,7 @@
         </main>
 
         <footer>
-            <!-- place footer here -->
+            
         </footer>
     </div>
     <!-- Bootstrap JavaScript Libraries -->
@@ -423,7 +595,19 @@
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 
     <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/validate.js"></script>
     <script src="./assets/js/wp-text-link-generator.js"></script>
+    <script src="./assets/js/wp-icon-generator.js"></script>
+
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.min.css">
+
+    <!-- CodeMirror Theme -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/theme/dracula.min.css">
+
+    <!-- CodeMirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/htmlmixed/htmlmixed.js"></script>
 </body>
 
 </html>

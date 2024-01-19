@@ -30,49 +30,101 @@ body {
     width: 100%;
     z-index: 999999;
     background-color: var(--primary-background);
+    transition: all 0.5s;
 }
 
 .loader {
-    width: 148px;
-    height: 148px;
-    display: inline-block;
-    position: relative;
-}
-
-.loader::after,
-.loader::before {
-    content: '';
-    box-sizing: border-box;
-    width: 148px;
-    height: 148px;
+    transform: rotateZ(45deg);
+    perspective: 1000px;
     border-radius: 50%;
-    background: #FFF;
+    width: 80px;
+    height: 80px;
+    color: var(--blue-color);
+}
+
+.loader:before,
+.loader:after {
+    content: '';
+    display: block;
     position: absolute;
-    left: 0;
     top: 0;
-    animation: animloader 2s linear infinite;
+    left: 0;
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+    transform: rotateX(70deg);
+    animation: 1s spin linear infinite;
 }
 
-.loader::after {
-    animation-delay: 1s;
+.loader:after {
+    color: var(--purple-color);
+    transform: rotateY(70deg);
+    animation-delay: .4s;
 }
 
-@keyframes animloader {
+@keyframes rotate {
     0% {
-        transform: scale(0);
-        opacity: 1;
+        transform: translate(-50%, -50%) rotateZ(0deg);
     }
 
     100% {
-        transform: scale(1);
-        opacity: 0;
+        transform: translate(-50%, -50%) rotateZ(360deg);
     }
 }
+
+@keyframes rotateccw {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}
+
+@keyframes spin {
+
+    0%,
+    100% {
+        box-shadow: .2em 0px 0 0px currentcolor;
+    }
+
+    12% {
+        box-shadow: .2em .2em 0 0 currentcolor;
+    }
+
+    25% {
+        box-shadow: 0 .2em 0 0px currentcolor;
+    }
+
+    37% {
+        box-shadow: -.2em .2em 0 0 currentcolor;
+    }
+
+    50% {
+        box-shadow: -.2em 0 0 0 currentcolor;
+    }
+
+    62% {
+        box-shadow: -.2em -.2em 0 0 currentcolor;
+    }
+
+    75% {
+        box-shadow: 0px -.2em 0 0 currentcolor;
+    }
+
+    87% {
+        box-shadow: .2em -.2em 0 0 currentcolor;
+    }
+}
+
 
 /* General */
 :root {
     --primary-background: #1E1633;
-    --primary-gradient: var(linear-gradient(251deg, #1498EB 0%, #962DE3 89.72%));
+    --primary-gradient: linear-gradient(251deg, #1498EB 0%, #962DE3 89.72%);
+    --purple-color: #962DE3;
+    --blue-color: #1498EB;
 }
 
 a {
@@ -108,7 +160,7 @@ span {
     background-size: cover;
     width: 100%;
     top: 0;
-    height: 200vh;
+    min-height: 100vh;
     background-attachment: fixed;
 }
 
@@ -118,16 +170,33 @@ span {
     flex-shrink: 0;
     border-radius: 100px;
     margin-bottom: 15px;
-    background: var(--linear, linear-gradient(251deg, #1498EB 0%, #962DE3 89.72%));
+    background: var(--primary-gradient);
 }
 
 
 .btn-toggle {
-    background: var(--linear, linear-gradient(251deg, #1498EB 0%, #962DE3 89.72%));
+    background: var(--primary-gradient);
 }
 
 .btn-gradient {
-    background: var(--linear, linear-gradient(251deg, #1498EB 0%, #962DE3 89.72%));
+    background: var(--primary-gradient);
+}
+
+.btn-group {
+    background: linear-gradient(251deg, #1499eb6b 0%, #972de33a 89.72%) !important;
+}
+
+.btn-gradient-option {
+    background: transparent;
+}
+
+.btn-check:checked+.btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check)+.btn:active {
+    color: #fff;
+    background-color: var(--blue-color);
 }
 
 .custom-btn {
@@ -139,7 +208,7 @@ span {
     line-height: normal;
     letter-spacing: 0.48px;
     color: #ffffff;
-    background: var(--linear, linear-gradient(251deg, #1498EB 0%, #962DE3 89.72%));
+    /* background: var(--primary-gradient); */
     vertical-align: middle;
     padding: 15px 30px;
     font-family: 'Mulish', sans-serif;
@@ -195,14 +264,14 @@ span {
     /* Counteract the arrow movement */
 }
 
-.verified{
+.verified {
     background: rgb(0, 104, 24);
     color: #ffffff;
     padding: 5px;
     border-radius: 5px;
 }
 
-.error{
+.error {
     background: red;
     color: #ffffff;
     padding: 5px;
@@ -262,7 +331,7 @@ span {
     flex-shrink: 0;
     border-radius: 100px;
     margin-bottom: 15px;
-    background: var(--linear, linear-gradient(251deg, #1498EB 0%, #962DE3 89.72%));
+    background: var(--primary-gradient);
 }
 
 .main_title {
@@ -343,7 +412,7 @@ span {
 }
 
 .nav-item .active {
-    background: var(--linear, linear-gradient(251deg, #1498EB 0%, #962DE3 89.72%));
+    background: var(--primary-gradient);
     margin: 5px;
     color: #ffffff;
 }
@@ -356,3 +425,9 @@ span {
     color: #000000;
 }
 
+#codeBox {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 300px;
+}

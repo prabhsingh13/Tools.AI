@@ -1,22 +1,13 @@
-// Get the header element
-var header = document.getElementById("mainHeader");
+console.log("Script File Connected Successfully!!");
 
-// Track the last scroll position
-var lastScrollTop = 0;
-
-// Function to handle scroll events
-function handleScroll() {
-    var currentScrollTop = window.scrollY;
-
-    // Check if scrolling up
-    if (currentScrollTop > lastScrollTop) {
-        header.classList.add("nav-background");
-    } else {
-        header.classList.remove("nav-background");
-    }
-
-    // Update the last scroll position
-    lastScrollTop = currentScrollTop;
+function onPageLoad() {
+    setTimeout(() => {
+        // Get the loader element
+        const loader = document.getElementById('loader');
+        
+        // Hide the loader
+        loader.style.display = 'none';
+    }, 1000);
 }
 
 // ----------------------------------------------------------------------------

@@ -1,63 +1,27 @@
-let phoneError = document.getElementById('phoneError');
-let mailError = document.getElementById('mailError');
-
-function validatePhone() {
-    let phone = document.getElementById('getNumber').value;
-    if (!/^\+\d{2,3}\d{10}$/.test(phone)) {
-        if (!/^\+\d{1,3}/.test(phone)) {
-            phoneError.classList.add('error');
-            phoneError.innerHTML = 'Enter Country Code';
-        } else if (/\+\d{2,3}\d{1,9}$/.test(phone)) {
-            phoneError.classList.add('error');
-            phoneError.innerHTML = 'Enter a valid 10 digit number';
-        } else {
-            phoneError.classList.add('error');
-            phoneError.innerHTML = 'Enter a valid number';
-        }
-        return false;
-    }
-    phoneError.classList.remove('error');
-    phoneError.classList.add('verified');
-    phoneError.innerHTML = 'Verified ' + '<i class="fas fa-check-circle"></i>';
-    return true;
-}
-
-function validateMail() {
-    let mail = document.getElementById('getEmail').value;
-    if (!/^\S+@\S+\.com$/.test(mail)) {
-        mailError.classList.add('error');
-        mailError.innerHTML = 'Enter a valid email address';
-        return false;
-    }
-    mailError.classList.remove('error');
-    mailError.classList.add('verified');
-    mailError.innerHTML = 'Verified ' + '<i class="fas fa-check-circle"></i>';
-    return true;
-}
-
+console.log("Text Link Generator File Connected Successfully!!");
 
 function generateLink() {
-    let number = document.getElementById('getNumber').value;
-    let email = document.getElementById('getEmail').value;
-    let message = document.getElementById('getMessage').value;
+    let number = document.getElementById('getNumber1').value;
+    let email = document.getElementById('getEmail1').value;
+    let message = document.getElementById('getMessage1').value;
     let link = document.getElementById('showLink');
     let linkHref = document.getElementById('showLinkHref');
 
-    console.log('Number:', number);
-    console.log('Email:', email);
-    console.log('Message:', message);
+    // console.log('Number:', number);
+    // console.log('Email:', email);
+    // console.log('Message:', message);
 
     // Replace spaces with "+"
     let modifiedMessage = message.replace(/ /g, '+');
-    console.log('Modified Message:', modifiedMessage);
+    // console.log('Modified Message:', modifiedMessage);
 
     let generatedLink;
     if (modifiedMessage) {
         generatedLink = 'https://wa.me/' + number + '?text=' + modifiedMessage;
-        console.log('Generated Link:', generatedLink);
+        // console.log('Generated Link:', generatedLink);
     } else {
         generatedLink = 'https://wa.me/' + number;
-        console.log('Generated Link:', generatedLink);
+        // console.log('Generated Link:', generatedLink);
     }
     link.value = generatedLink;
     linkHref.href = generatedLink;
@@ -132,7 +96,7 @@ function downloadQRCode() {
 
     // Remove the link from the document
     document.body.removeChild(a);
-    
+
     const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
